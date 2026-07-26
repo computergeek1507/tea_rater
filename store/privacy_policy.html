@@ -1,0 +1,225 @@
+<title>Privacy Policy — Tea Rater</title>
+<style>
+  :root {
+    --bg: #f5f8fb;
+    --surface: #ffffff;
+    --text: #16232e;
+    --text-muted: #55697a;
+    --accent: #1565c0;
+    --accent-warm: #e2690f;
+    --border: #dee6ee;
+    --steam: #e2690f;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #0e1620;
+      --surface: #131d28;
+      --text: #e8eef4;
+      --text-muted: #93a4b4;
+      --accent: #6fa8e8;
+      --accent-warm: #ffb265;
+      --border: #263442;
+      --steam: #ffb265;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0e1620;
+    --surface: #131d28;
+    --text: #e8eef4;
+    --text-muted: #93a4b4;
+    --accent: #6fa8e8;
+    --accent-warm: #ffb265;
+    --border: #263442;
+    --steam: #ffb265;
+  }
+  :root[data-theme="light"] {
+    --bg: #f5f8fb;
+    --surface: #ffffff;
+    --text: #16232e;
+    --text-muted: #55697a;
+    --accent: #1565c0;
+    --accent-warm: #e2690f;
+    --border: #dee6ee;
+    --steam: #e2690f;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: ui-sans-serif, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .page {
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 4rem 1.5rem 6rem;
+  }
+
+  header {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    padding-bottom: 2rem;
+    margin-bottom: 2.5rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .mark {
+    flex: none;
+    width: 44px;
+    height: 44px;
+    margin-top: 0.35rem;
+  }
+
+  h1 {
+    font-family: ui-serif, Georgia, "Times New Roman", serif;
+    font-weight: 600;
+    font-size: 2.1rem;
+    letter-spacing: -0.01em;
+    text-wrap: balance;
+    margin: 0 0 0.4rem;
+    color: var(--text);
+  }
+
+  .subtitle {
+    margin: 0;
+    color: var(--text-muted);
+    font-size: 1.05rem;
+  }
+
+  .updated {
+    display: inline-block;
+    margin-top: 0.9rem;
+    font-family: ui-monospace, "Cascadia Code", Consolas, monospace;
+    font-size: 0.78rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--accent-warm);
+    background: color-mix(in srgb, var(--accent-warm) 12%, transparent);
+    border-radius: 999px;
+    padding: 0.3rem 0.75rem;
+  }
+
+  .intro {
+    font-size: 1.08rem;
+    color: var(--text);
+    max-width: 62ch;
+  }
+
+  section {
+    margin-top: 2.6rem;
+    max-width: 65ch;
+  }
+
+  h2 {
+    font-family: ui-serif, Georgia, "Times New Roman", serif;
+    font-weight: 600;
+    font-size: 1.25rem;
+    margin: 0 0 0.7rem;
+    color: var(--text);
+  }
+
+  p {
+    margin: 0 0 1rem;
+    color: var(--text);
+  }
+
+  p:last-child { margin-bottom: 0; }
+
+  .lede {
+    color: var(--text-muted);
+  }
+
+  footer {
+    margin-top: 3.5rem;
+    padding-top: 1.75rem;
+    border-top: 1px solid var(--border);
+    color: var(--text-muted);
+    font-size: 0.92rem;
+  }
+
+  a {
+    color: var(--accent);
+    text-decoration-color: color-mix(in srgb, var(--accent) 40%, transparent);
+  }
+  a:hover { text-decoration-color: var(--accent); }
+  a:focus-visible, button:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+
+  @media (max-width: 520px) {
+    .page { padding: 2.75rem 1.25rem 4rem; }
+    h1 { font-size: 1.7rem; }
+  }
+</style>
+
+<div class="page">
+  <header>
+    <svg class="mark" viewBox="0 0 64 64" aria-hidden="true">
+      <path d="M18 26h28v14a10 10 0 0 1-10 10H28a10 10 0 0 1-10-10V26Z"
+            fill="none" stroke="var(--accent)" stroke-width="3"/>
+      <path d="M46 30h4a6 6 0 0 1 0 12h-4" fill="none" stroke="var(--accent)" stroke-width="3"/>
+      <path d="M25 20c2-2 2-4 0-6M32 20c2-2 2-4 0-6M39 20c2-2 2-4 0-6"
+            fill="none" stroke="var(--steam)" stroke-width="3" stroke-linecap="round"/>
+    </svg>
+    <div>
+      <h1>Privacy Policy</h1>
+      <p class="subtitle">For the Tea Rater Android app</p>
+      <span class="updated">Last updated 26 Jul 2026</span>
+    </div>
+  </header>
+
+  <p class="intro">Tea Rater is a personal tea-tracking app built for one job:
+    keeping a tasting log of the teas you try. This page explains what data
+    the app touches, in full, and why.</p>
+
+  <section>
+    <h2>Data collection</h2>
+    <p>Tea Rater does not collect, transmit, or store any personal data on
+      any server. There is no account, no analytics, and no advertising.</p>
+    <p>Every tea entry — name, rating, notes, brew count — is stored only in
+      local app storage on your device. It never leaves your device unless
+      you explicitly export it yourself, as described below.</p>
+  </section>
+
+  <section>
+    <h2>Camera permission</h2>
+    <p>Tea Rater can use your device's camera to scan text off a tea
+      package, so you can fill in a tea's name without typing it. This runs
+      entirely on-device using Android's ML Kit text recognition. No image
+      or video is ever uploaded, stored, or shared — each camera frame is
+      processed in memory and discarded immediately after recognition.</p>
+  </section>
+
+  <section>
+    <h2>File export &amp; import</h2>
+    <p>You can export your tea list to a JSON file, and import a previously
+      exported file back in. This is a manual, user-initiated action using
+      your device's file picker. Exported files go wherever you choose on
+      your device or its connected storage — Tea Rater does not upload them
+      anywhere.</p>
+  </section>
+
+  <section>
+    <h2>Third-party services</h2>
+    <p>Tea Rater does not integrate any third-party analytics, advertising,
+      or tracking SDKs.</p>
+  </section>
+
+  <section>
+    <h2>Changes to this policy</h2>
+    <p>If this policy changes, the updated version will be posted at this
+      same location with a revised "last updated" date.</p>
+  </section>
+
+  <footer>
+    Questions about this policy: <a href="mailto:scooter.seh@gmail.com">scooter.seh@gmail.com</a>
+  </footer>
+</div>
