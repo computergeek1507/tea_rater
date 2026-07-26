@@ -5,6 +5,8 @@ import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import 'live_ocr_scanner.dart';
+
 void main() => runApp(const TeaRaterApp());
 
 enum Rating { up, middle, down }
@@ -484,6 +486,15 @@ class _TeaEditDialogState extends State<_TeaEditDialog> {
     super.dispose();
   }
 
+  Future<void> _scanName() async {
+    final result = await Navigator.of(context).push<String>(
+      MaterialPageRoute(builder: (_) => const LiveOcrScannerPage()),
+    );
+    if (result != null && result.isNotEmpty) {
+      _name.text = result;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
@@ -494,7 +505,16 @@ class _TeaEditDialogState extends State<_TeaEditDialog> {
           TextField(
             controller: _name,
             autofocus: true,
-            decoration: const InputDecoration(labelText: 'Name'),
+            decoration: InputDecoration(
+              labelText: 'Name',
+              suffixIcon: Platform.isAndroid
+                  ? IconButton(
+                      tooltip: 'Scan name with camera',
+                      icon: const Icon(Icons.camera_alt_outlined),
+                      onPressed: _scanName,
+                    )
+                  : null,
+            ),
             textInputAction: TextInputAction.next,
           ),
           const SizedBox(height: 12),
