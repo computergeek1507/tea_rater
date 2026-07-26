@@ -26,6 +26,22 @@ subprojects {
         if (!plugins.hasPlugin("org.jetbrains.kotlin.android")) {
             plugins.apply("org.jetbrains.kotlin.android")
         }
+        extensions.configure<com.android.build.gradle.LibraryExtension> {
+            compileOptions {
+                sourceCompatibility = JavaVersion.VERSION_17
+                targetCompatibility = JavaVersion.VERSION_17
+            }
+        }
+    }
+
+    // Match the app module's JVM target so Kotlin and Java compile tasks
+    // agree (Gradle otherwise defaults Kotlin's target to the running JDK).
+    plugins.withId("org.jetbrains.kotlin.android") {
+        extensions.configure<org.jetbrains.kotlin.gradle.dsl.KotlinAndroidProjectExtension> {
+            compilerOptions {
+                jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_17)
+            }
+        }
     }
 }
 

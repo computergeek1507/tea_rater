@@ -34,21 +34,29 @@ extension RatingX on Rating {
 }
 
 class Tea {
-  Tea({required this.name, this.rating = Rating.middle, this.notes = ''});
+  Tea({
+    required this.name,
+    this.rating = Rating.middle,
+    this.notes = '',
+    this.count = 1,
+  });
   String name;
   Rating rating;
   String notes;
+  int count;
 
   Map<String, dynamic> toJson() => {
         'name': name,
         'rating': rating.label,
         'notes': notes,
+        'count': count,
       };
 
   static Tea fromJson(Map<String, dynamic> j) => Tea(
         name: (j['name'] ?? '').toString(),
         rating: RatingX.fromLabel(j['rating'] as String?) ?? Rating.middle,
         notes: (j['notes'] ?? '').toString(),
+        count: (j['count'] as num?)?.toInt() ?? 1,
       );
 }
 
@@ -146,6 +154,11 @@ class _TeaListPageState extends State<TeaListPage> {
     _save();
   }
 
+  void _incrementCount(Tea tea) {
+    setState(() => tea.count++);
+    _save();
+  }
+
   Future<void> _addOrEdit({Tea? existing}) async {
     final result = await showDialog<Tea>(
       context: context,
@@ -157,6 +170,7 @@ class _TeaListPageState extends State<TeaListPage> {
         _teas.add(result);
       } else {
         existing.name = result.name;
+        existing.rating = result.rating;
         existing.notes = result.notes;
       }
     });
@@ -388,6 +402,20 @@ class _TeaListPageState extends State<TeaListPage> {
                         trailing: Row(
                           mainAxisSize: MainAxisSize.min,
                           children: [
+                            InkWell(
+                              customBorder: const CircleBorder(),
+                              onTap: () => _incrementCount(tea),
+                              child: Padding(
+                                padding: const EdgeInsets.all(8),
+                                child: Text(
+                                  '×${tea.count}',
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .titleMedium
+                                      ?.copyWith(fontWeight: FontWeight.w600),
+                                ),
+                              ),
+                            ),
                             IconButton(
                               tooltip:
                                   'Rating: ${tea.rating.label} (tap to cycle)',
@@ -447,6 +475,7 @@ class _TeaEditDialogState extends State<_TeaEditDialog> {
       TextEditingController(text: widget.initial?.name ?? '');
   late final TextEditingController _notes =
       TextEditingController(text: widget.initial?.notes ?? '');
+  late Rating _rating = widget.initial?.rating ?? Rating.middle;
 
   @override
   void dispose() {
@@ -474,6 +503,22 @@ class _TeaEditDialogState extends State<_TeaEditDialog> {
             decoration: const InputDecoration(labelText: 'Notes (optional)'),
             maxLines: 3,
           ),
+          const SizedBox(height: 12),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              for (final r in Rating.values)
+                IconButton(
+                  tooltip: r.label,
+                  iconSize: 32,
+                  icon: Icon(r.icon),
+                  color: _rating == r
+                      ? r.color
+                      : Theme.of(context).disabledColor,
+                  onPressed: () => setState(() => _rating = r),
+                ),
+            ],
+          ),
         ],
       ),
       actions: [
@@ -489,7 +534,7 @@ class _TeaEditDialogState extends State<_TeaEditDialog> {
               context,
               Tea(
                 name: name,
-                rating: widget.initial?.rating ?? Rating.middle,
+                rating: _rating,
                 notes: _notes.text.trim(),
               ),
             );
